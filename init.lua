@@ -241,7 +241,8 @@ require('lazy').setup({
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
-
+  -- loads ocaml plugin
+  { 'tjdevries/ocaml.nvim' },
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
   --    require('gitsigns').setup({ ... })
@@ -567,6 +568,11 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
+        ocamllsp = {
+          get_language_id = function(_, ftype)
+            return ftype
+          end,
+        },
         clojure_lsp = {},
         -- clangd = {},
         -- gopls = {},
