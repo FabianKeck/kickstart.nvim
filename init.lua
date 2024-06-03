@@ -183,6 +183,9 @@ vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 -- Binds Esc to jk
 vim.keymap.set('i', 'kj', '<Esc>')
 
+--use ; to enter command mode from normal mode
+vim.keymap.set('n', ';', ':')
+
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
