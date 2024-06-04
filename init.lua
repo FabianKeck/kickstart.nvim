@@ -198,6 +198,8 @@ vim.keymap.set('n', '<Leader>ws', '<C-w>s', { desc = 'Split window horizontally'
 vim.keymap.set('n', '<Leader>wv', '<C-w>s', { desc = 'Split window vertically' })
 vim.keymap.set('n', '<Leader>wd', '<C-w><C-q>', { desc = 'Close current window' })
 
+vim.keymap.set('n', '<Leader>.', ':Explore<cr>', { desc = 'Explore current directory' })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
