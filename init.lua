@@ -249,6 +249,17 @@ require('lazy').setup({
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
+  -- autopairs to add closing pairs automatically
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = true,
+    opts = {
+      enable_check_bracket_line = false,
+    },
+    -- use opts = {} for passing setup options
+    -- this is equalent to setup({}) function
+  },
   -- loads ocaml plugin
   { 'tjdevries/ocaml.nvim' },
   -- Here is a more advanced example where we pass configuration
