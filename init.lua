@@ -184,7 +184,7 @@ vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 vim.keymap.set('i', 'kj', '<Esc>')
 
 --use ; to enter command mode from normal mode
-vim.keymap.set('n', ';', ':')
+-- vim.keymap.set('n', ';', ':')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -255,10 +255,8 @@ require('lazy').setup({
     event = 'InsertEnter',
     config = true,
     opts = {
-      enable_check_bracket_line = false,
+      enable_check_bracket_line = true,
     },
-    -- use opts = {} for passing setup options
-    -- this is equalent to setup({}) function
   },
   -- loads ocaml plugin
   { 'tjdevries/ocaml.nvim' },
