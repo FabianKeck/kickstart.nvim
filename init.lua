@@ -195,7 +195,7 @@ vim.keymap.set('n', '<Leader>wl', '<C-w><C-l>', { desc = 'Move focus to the righ
 vim.keymap.set('n', '<Leader>wj', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<Leader>wk', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 vim.keymap.set('n', '<Leader>ws', '<C-w>s', { desc = 'Split window horizontally' })
-vim.keymap.set('n', '<Leader>wv', '<C-w>s', { desc = 'Split window vertically' })
+vim.keymap.set('n', '<Leader>wv', '<C-w>v', { desc = 'Split window vertically' })
 vim.keymap.set('n', '<Leader>wd', '<C-w><C-q>', { desc = 'Close current window' })
 
 vim.keymap.set('n', '<Leader>.', ':Explore<cr>', { desc = 'Explore current directory' })
@@ -257,6 +257,25 @@ require('lazy').setup({
     opts = {
       enable_check_bracket_line = true,
     },
+  },
+  {
+    'nvim-orgmode/orgmode',
+    event = 'VeryLazy',
+    ft = { 'org' },
+    config = function()
+      -- Setup orgmode
+      require('orgmode').setup {
+        org_agenda_files = '~/one-drive/org-roam/*',
+        org_default_notes_file = '~/orgfiles/refile.org',
+      }
+
+      -- NOTE: If you are using nvim-treesitter with ~ensure_installed = "all"~ option
+      -- add ~org~ to ignore_install
+      -- require('nvim-treesitter.configs').setup({
+      --   ensure_installed = 'all',
+      --   ignore_install = { 'org' },
+      -- })
+    end,
   },
   -- loads ocaml plugin
   { 'tjdevries/ocaml.nvim' },
