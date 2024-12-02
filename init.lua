@@ -336,35 +336,15 @@ require('lazy').setup({
     end,
   },
   {
-    'prichrd/netrw.nvim',
-    opts = {
-      icons = {
-        symlink = '', -- Symlink icon (directory and file)
-        directory = '', -- Directory icon
-        file = '', -- File icon
-      },
-      use_devicons = true,
-      -- Define normal mode mapping
-      mappings = {
-        -- Function mappings
-        ['p'] = function(payload)
-          -- Payload is an object describing the node under the cursor, the object
-          -- has the following keys:
-          -- - dir: the current netrw directory (vim.b.netrw_curdir)
-          -- - node: the name of the file or directory under the cursor
-          -- - link: the referenced file if the node under the cursor is a symlink
-          -- - extension: the file extension if the node under the cursor is a file
-          -- - type: the type of node under the cursor (0 = dir, 1 = file, 2 = symlink)
-          -- - col: the column of the node (for liststyle 3)
-          print(vim.inspect(payload))
-        end,
-        -- String command mappings
-        ['<Leader><Tab>'] = ":echo 'string command'<CR>",
-        -- more mappings ...
-      },
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
   },
-
   -- NOTE: Plugins can specify dependencies.
   --
   -- The dependencies are proper plugin specifications as well - anything
