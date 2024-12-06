@@ -96,6 +96,7 @@ vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 -- Binds Esc to jk
 vim.keymap.set('i', 'kj', '<Esc>')
+vim.keymap.set('v', 'kj', '<Esc>')
 
 --use ; to enter command mode from normal mode
 -- vim.keymap.set('n', ';', ':')
@@ -121,9 +122,6 @@ vim.keymap.set('n', '<Leader>bx', ':bdelete', { desc = 'Close current buffer' })
 
 -- vim.keymap.set('n', '<Leader>.', ':Explore<cr>', { desc = 'Explore current directory' })
 
--- keymaps for neotre
-vim.keymap.set('n', '<Leader>.', ':Neotree reveal left<CR>', { desc = { 'open Neotree left' } })
-vim.keymap.set('n', '<Leader>tt', ':Neotree toggle<CR>', { desc = { 'open Neotree left' } })
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
