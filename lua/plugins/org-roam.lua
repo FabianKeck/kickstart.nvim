@@ -1,5 +1,6 @@
 return {
   'chipsenkbeil/org-roam.nvim',
+  event = 'VeryLazy',
   tag = '0.1.1',
   dependencies = {
     {
@@ -23,31 +24,6 @@ return {
             capture_today = '<prefix>dT',
             capture_tomorrow = '<prefix>dM',
             goto_today = '<prefix>dt',
-            goto_tomorrow = '<prefix>dm',
-          },
-        },
-      },
-      -- extensions.dailies.Templates
-      extensions = {
-        dailies = {
-          templates = {
-            d = {
-              description = 'daily',
-              template = '* absences\n** planned\n- \n** actual\n- \n* daily topics\n** %?',
-              target = '%<%Y-%m-%d>.org',
-            },
-          },
-          bindings = {
-            ---Capture today's note.
-            capture_today = '<prefix>dT',
-
-            ---Capture tomorrow's note.
-            capture_tomorrow = '<prefix>dM',
-
-            ---Navigate to today's note.
-            goto_today = '<prefix>dt',
-
-            ---Navigate to tomorrow's note.
             goto_tomorrow = '<prefix>dm',
           },
         },

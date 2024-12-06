@@ -1,5 +1,6 @@
 return {
   'echasnovski/mini.nvim',
+  event = 'InsertEnter',
   config = function()
     -- Better Around/Inside textobjects
     --

@@ -1,12 +1,12 @@
 return {
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  { 'tpope/vim-sleuth', event = 'VimEnter' }, -- Detect tabstop and shiftwidth automatically
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
   -- autopairs to add closing pairs automatically
 
   -- loads ocaml plugin
-  { 'tjdevries/ocaml.nvim' },
+  -- { 'tjdevries/ocaml.nvim' },
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
