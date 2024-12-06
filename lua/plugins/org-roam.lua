@@ -9,12 +9,23 @@ return {
   },
   config = function()
     require('org-roam').setup {
-      directory = '~/org_roam_files',
-      -- optional
-      org_files = {
-        '~/another_org_dir',
-        '~/some/folder/*.org',
-        '~/a/single/org_file.org',
+      directory = '~/org-roam-files',
+      extensions = {
+        dailies = {
+          templates = {
+            d = {
+              description = 'daily',
+              template = '* absences\n** planned\n- \n** actual\n- \n* daily topics\n** %?',
+              target = '%<%Y-%m-%d>.org',
+            },
+          },
+          bindings = {
+            capture_today = '<prefix>dT',
+            capture_tomorrow = '<prefix>dM',
+            goto_today = '<prefix>dt',
+            goto_tomorrow = '<prefix>dm',
+          },
+        },
       },
       -- extensions.dailies.Templates
       extensions = {
