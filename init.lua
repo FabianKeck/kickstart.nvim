@@ -107,9 +107,17 @@ vim.keymap.set('n', '<Leader>wh', '<C-w><C-h>', { desc = 'Move focus to the left
 vim.keymap.set('n', '<Leader>wl', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<Leader>wj', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<Leader>wk', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<Leader>wp', '<C-w>p', { desc = 'Move focus to the previous window' })
 vim.keymap.set('n', '<Leader>ws', '<C-w>s', { desc = 'Split window horizontally' })
 vim.keymap.set('n', '<Leader>wv', '<C-w>v', { desc = 'Split window vertically' })
-vim.keymap.set('n', '<Leader>wd', '<C-w><C-q>', { desc = 'Close current window' })
+vim.keymap.set('n', '<Leader>wn', '<C-w>n', { desc = 'Create a new window with new file' })
+vim.keymap.set('n', '<Leader>wo', '<C-w>o', { desc = 'Make the current only one on screen.' })
+vim.keymap.set('n', '<Leader>wd', '<C-w>c', { desc = 'Close current window' })
+
+-- buffer commands
+vim.keymap.set('n', '<Leader>bb', ':ls ', { desc = 'List buffers' })
+vim.keymap.set('n', '<Leader>bB', ':ls! ', { desc = 'List all buffers' })
+vim.keymap.set('n', '<Leader>bx', ':bdelete', { desc = 'Close current buffer' })
 
 -- vim.keymap.set('n', '<Leader>.', ':Explore<cr>', { desc = 'Explore current directory' })
 
