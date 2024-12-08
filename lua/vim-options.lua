@@ -97,6 +97,7 @@ vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 -- Binds Esc to jk
 vim.keymap.set('i', 'kj', '<Esc>')
 vim.keymap.set('v', 'kj', '<Esc>')
+vim.keymap.set('c', 'kj', '<Esc><Esc>')
 
 --use ; to enter command mode from normal mode
 -- vim.keymap.set('n', ';', ':')
@@ -116,22 +117,13 @@ vim.keymap.set('n', '<Leader>wo', '<C-w>o', { desc = 'Make the current only one 
 vim.keymap.set('n', '<Leader>wd', '<C-w>c', { desc = 'Close current window' })
 
 -- buffer commands
-vim.keymap.set('n', '<Leader>bb', ':ls ', { desc = 'List buffers' })
-vim.keymap.set('n', '<Leader>bB', ':ls! ', { desc = 'List all buffers' })
-vim.keymap.set('n', '<Leader>bx', ':bdelete', { desc = 'Close current buffer' })
+vim.keymap.set('n', '<Leader>bb', ':ls <CR>', { desc = 'List buffers' })
+vim.keymap.set('n', '<Leader>bB', ':ls! <CR>', { desc = 'List all buffers' })
+vim.keymap.set('n', '<Leader>bx', ':bdelete <CR>', { desc = 'Close current buffer' })
+
+-- help navigation
+-- these to do not yet work and need a solution
+-- vim.keymap.set('n', 'g<CR>', 'CTRL-]', { desc = 'Jump to the definition' })
+-- vim.keymap.set('n', 'go', 'CTRL-o', { desc = 'Go to [count] Older cursor position in jump list' })
 
 -- vim.keymap.set('n', '<Leader>.', ':Explore<cr>', { desc = 'Explore current directory' })
-
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
-
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
