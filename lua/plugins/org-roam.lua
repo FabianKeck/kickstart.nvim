@@ -10,7 +10,7 @@ return {
   },
   config = function()
     require('org-roam').setup {
-      directory = '~/org-roam-files',
+      directory = os.getenv 'ROAM_DIR',
       extensions = {
         dailies = {
           templates = {
