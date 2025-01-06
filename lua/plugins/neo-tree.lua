@@ -3,8 +3,8 @@ return {
   branch = 'v3.x',
   config = function()
     -- keymaps for neotre
-    vim.keymap.set('n', '<Leader>.', ':Neotree reveal left<CR>', { desc = { 'open Neotree left' } })
-    vim.keymap.set('n', '<Leader>tt', ':Neotree toggle<CR>', { desc = { 'open Neotree left' } })
+    vim.keymap.set('n', '<Leader>.', ':Neotree reveal left<CR>', { desc = 'open Neotree left' })
+    vim.keymap.set('n', '<Leader>tt', ':Neotree toggle<CR>', { desc = 'open Neotree left' })
   end,
   dependencies = {
     'nvim-lua/plenary.nvim',
