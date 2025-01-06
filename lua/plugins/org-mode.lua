@@ -5,7 +5,7 @@ return {
   config = function()
     -- Setup orgmode
     require('orgmode').setup {
-      org_agenda_files = os.getenv 'ROAM_DIR' .. '/*',
+      org_agenda_files = { os.getenv 'ROAM_DIR' .. '/*', os.getenv 'ROAM_DIR' .. '/daily/*' },
       org_default_notes_file = '~/orgfiles/refile.org',
       vim.api.nvim_create_autocmd('FileType', {
         pattern = 'org',
