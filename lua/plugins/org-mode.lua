@@ -10,9 +10,12 @@ return {
       vim.api.nvim_create_autocmd('FileType', {
         pattern = 'org',
         callback = function()
-          vim.keymap.set('i', '<S-CR>', '<cmd>lua require("orgmode").action("org_insert_heading_respect_content")<CR>', {
-            silent = true,
+          vim.keymap.set('i', '<M-CR>', function()
+            require('orgmode').action 'org_insert_heading_respect_content'
+          end, {
+            -- silent = true,
             buffer = true,
+            desc = 'org_insert_heading_respect_content',
           })
         end,
       }),
