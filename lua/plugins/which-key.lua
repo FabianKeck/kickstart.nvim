@@ -42,6 +42,8 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>w_', hidden = true },
       { '<leader>b', group = '[B]uffer' },
       { '<leader>b_', hidden = true },
+      { '<leader>l', group = 'current [L]ine' },
+      { '<leader>l_', hidden = true },
       -- visual mode
       { '<leader>h', desc = 'Git [H]unk', mode = 'v' },
     },
