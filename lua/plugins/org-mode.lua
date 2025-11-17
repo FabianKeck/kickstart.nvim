@@ -99,6 +99,68 @@ return {
         end, {
           desc = 'Open agenda view',
         })
+        
+        -- Extract subtree to new org-roam node
+        vim.keymap.set('n', '<Leader>osf', function()
+          local headline = require('orgmode').instance().files:get_closest_headline()
+          if not headline then
+            vim.notify('No headline found', vim.log.levels.WARN)
+            return
+          end
+          
+          -- Get subtree content
+          local range = headline:get_range()
+          local lines = vim.api.nvim_buf_get_lines(0, range.start_line - 1, range.end_line, false)
+          
+          -- Prompt for node title
+          local default_title = headline:get_title()
+          vim.ui.input({ prompt = 'Node title: ', default = default_title }, function(title)
+            if not title or title == '' then
+              return
+            end
+            
+            -- Generate org-roam style filename: timestamp-slug.org
+            local timestamp = os.date('%Y%m%d%H%M%S')
+            local slug = title:lower():gsub('%s+', '-'):gsub('[^%w-]', '')
+            local roam_dir = vim.fn.expand(os.getenv('ROAM_DIR') or '~/org-roam')
+            local filename = roam_dir .. '/' .. timestamp .. '-' .. slug .. '.org'
+            
+            -- Generate UUID for org-roam node
+            local uuid = vim.fn.system('uuidgen'):gsub('\n', '')
+            
+            -- Prepare file content with org-roam properties
+            local file_lines = {
+              ':PROPERTIES:',
+              ':ID:       ' .. uuid,
+              ':END:',
+              '#+title: ' .. title,
+              '',
+            }
+            
+            -- Add the subtree content (remove the top-level stars to make it content)
+            for _, line in ipairs(lines) do
+              table.insert(file_lines, line)
+            end
+            
+            -- Write to new file
+            vim.fn.writefile(file_lines, filename)
+            
+            -- Delete from current buffer
+            vim.api.nvim_buf_set_lines(0, range.start_line - 1, range.end_line, false, {})
+            
+            vim.notify('Subtree extracted to: ' .. filename, vim.log.levels.INFO)
+            
+            -- Open the new file
+            vim.cmd('edit ' .. filename)
+            
+            -- Update org-roam database
+            vim.schedule(function()
+              vim.cmd('RoamUpdate')
+            end)
+          end)
+        end, {
+          desc = 'Extract subtree to new org-roam node',
+        })
       end,
     })
 
