@@ -92,6 +92,13 @@ return {
           buffer = true,
           desc = 'Set CLOSED state',
         })
+        
+        -- Open agenda view
+        vim.keymap.set('n', '<Leader>oa', function()
+          require('orgmode').action('agenda.prompt')
+        end, {
+          desc = 'Open agenda view',
+        })
       end,
     })
 
