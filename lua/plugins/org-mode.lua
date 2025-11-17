@@ -8,6 +8,7 @@ return {
       org_agenda_files = { os.getenv 'ROAM_DIR' .. '/*', os.getenv 'ROAM_DIR' .. '/daily/*' },
       org_default_notes_file = '~/orgfiles/refile.org',
       org_startup_folded = 'showeverything',
+      org_adapt_indentation = false,
     }
     
     vim.api.nvim_create_autocmd('FileType', {
@@ -24,6 +25,40 @@ return {
           buffer = true,
           expr = true,
           desc = 'Insert new heading',
+        })
+        
+        -- TAB to demote subtree in insert mode
+        vim.keymap.set('i', '<Tab>', function()
+          local col = vim.fn.col('.')
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', false)
+          vim.schedule(function()
+            require('orgmode').instance().org_mappings:do_demote(true)
+            -- Adjust cursor position to account for added star
+            vim.fn.cursor(vim.fn.line('.'), col + 1)
+            vim.cmd('startinsert')
+          end)
+          return ''
+        end, {
+          buffer = true,
+          expr = true,
+          desc = 'Demote subtree',
+        })
+        
+        -- Shift-TAB to promote subtree in insert mode
+        vim.keymap.set('i', '<S-Tab>', function()
+          local col = vim.fn.col('.')
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>', true, false, true), 'n', false)
+          vim.schedule(function()
+            require('orgmode').instance().org_mappings:do_promote(true)
+            -- Adjust cursor position to account for removed star
+            vim.fn.cursor(vim.fn.line('.'), math.max(1, col - 1))
+            vim.cmd('startinsert')
+          end)
+          return ''
+        end, {
+          buffer = true,
+          expr = true,
+          desc = 'Promote subtree',
         })
       end,
     })
