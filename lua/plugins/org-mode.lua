@@ -10,6 +10,7 @@ return {
       org_startup_folded = 'showeverything',
       org_adapt_indentation = false,
       org_startup_indented = true,
+      org_todo_keywords = { 'TODO', '|', 'DONE', 'CLOSED' },
     }
     
     vim.api.nvim_create_autocmd('FileType', {
@@ -60,6 +61,37 @@ return {
           buffer = true,
           expr = true,
           desc = 'Promote subtree',
+        })
+        
+        -- Leader-m followed by t/d to set TODO states
+        vim.keymap.set('n', '<Leader>mt', function()
+          local headline = require('orgmode').instance().files:get_closest_headline()
+          if headline then
+            headline:set_todo('TODO')
+          end
+        end, {
+          buffer = true,
+          desc = 'Set TODO state',
+        })
+        
+        vim.keymap.set('n', '<Leader>md', function()
+          local headline = require('orgmode').instance().files:get_closest_headline()
+          if headline then
+            headline:set_todo('DONE')
+          end
+        end, {
+          buffer = true,
+          desc = 'Set DONE state',
+        })
+        
+        vim.keymap.set('n', '<Leader>mc', function()
+          local headline = require('orgmode').instance().files:get_closest_headline()
+          if headline then
+            headline:set_todo('CLOSED')
+          end
+        end, {
+          buffer = true,
+          desc = 'Set CLOSED state',
         })
       end,
     })
