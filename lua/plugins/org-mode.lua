@@ -9,6 +9,7 @@ return {
       org_default_notes_file = '~/orgfiles/refile.org',
       org_startup_folded = 'showeverything',
       org_adapt_indentation = false,
+      org_startup_indented = true,
     }
     
     vim.api.nvim_create_autocmd('FileType', {
