@@ -46,6 +46,8 @@ return { -- Useful plugin to show you pending keybinds.
       { '<leader>l_', hidden = true },
       { '<leader>m', group = '[M]ark TODO state' },
       { '<leader>m_', hidden = true },
+      { '<leader>os', group = 'org [S]ubtree' },
+      { '<leader>os_', hidden = true },
       -- visual mode
       { '<leader>h', desc = 'Git [H]unk', mode = 'v' },
     },

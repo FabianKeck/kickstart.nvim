@@ -100,20 +100,43 @@ return {
           desc = 'Open agenda view',
         })
         
-        -- Extract subtree to new org-roam node
-        vim.keymap.set('n', '<Leader>osf', function()
+        -- Cut subtree to clipboard
+        local function cut_subtree()
           local headline = require('orgmode').instance().files:get_closest_headline()
           if not headline then
             vim.notify('No headline found', vim.log.levels.WARN)
-            return
+            return nil
           end
           
           -- Get subtree content
           local range = headline:get_range()
           local lines = vim.api.nvim_buf_get_lines(0, range.start_line - 1, range.end_line, false)
           
+          -- Delete from current buffer
+          vim.api.nvim_buf_set_lines(0, range.start_line - 1, range.end_line, false, {})
+          
+          return lines, headline:get_title()
+        end
+        
+        vim.keymap.set('n', '<Leader>osx', function()
+          local lines, _ = cut_subtree()
+          if lines then
+            -- Copy to clipboard (+ register for system clipboard)
+            vim.fn.setreg('+', table.concat(lines, '\n'))
+            vim.notify('Subtree cut to clipboard', vim.log.levels.INFO)
+          end
+        end, {
+          desc = 'Cut subtree to clipboard',
+        })
+        
+        -- Extract subtree to new org-roam node
+        vim.keymap.set('n', '<Leader>osf', function()
+          local lines, default_title = cut_subtree()
+          if not lines then
+            return
+          end
+          
           -- Prompt for node title
-          local default_title = headline:get_title()
           vim.ui.input({ prompt = 'Node title: ', default = default_title }, function(title)
             if not title or title == '' then
               return
@@ -137,16 +160,13 @@ return {
               '',
             }
             
-            -- Add the subtree content (remove the top-level stars to make it content)
+            -- Add the subtree content
             for _, line in ipairs(lines) do
               table.insert(file_lines, line)
             end
             
             -- Write to new file
             vim.fn.writefile(file_lines, filename)
-            
-            -- Delete from current buffer
-            vim.api.nvim_buf_set_lines(0, range.start_line - 1, range.end_line, false, {})
             
             vim.notify('Subtree extracted to: ' .. filename, vim.log.levels.INFO)
             
