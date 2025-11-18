@@ -1,6 +1,6 @@
 return {
   'chipsenkbeil/org-roam.nvim',
-  ft = { 'org' },
+  event = 'VeryLazy',
   tag = '0.1.1',
   dependencies = {
     {
