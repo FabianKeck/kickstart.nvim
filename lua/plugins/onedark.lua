@@ -13,5 +13,9 @@ return { -- You can easily change to a different colorscheme.
 
     -- You can configure highlights by doing something like:
     vim.cmd.hi 'Comment gui=none'
+
+    -- Org mode heading colors
+    vim.api.nvim_set_hl(0, '@org.headline.level1', { fg = '#61afef', bold = true })
+    vim.api.nvim_set_hl(0, '@org.headline.level2', { fg = '#c678dd', bold = true })
   end,
 }
