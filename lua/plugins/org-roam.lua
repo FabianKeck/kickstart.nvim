@@ -1,11 +1,10 @@
 return {
   'chipsenkbeil/org-roam.nvim',
   event = 'VeryLazy',
-  tag = '0.1.1',
+  tag = '0.2.0',
   dependencies = {
     {
       'nvim-orgmode/orgmode',
-      tag = '0.3.7',
     },
   },
   config = function()
