@@ -3,7 +3,7 @@ return { -- Highlight, edit, and navigate code
   event = { 'BufReadPost', 'BufNewFile' },
   build = ':TSUpdate',
   opts = {
-    ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'org', 'vim', 'vimdoc' },
+    ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
     -- Autoinstall languages that are not installed
     auto_install = true,
     highlight = {
