@@ -103,6 +103,10 @@ vim.keymap.set('i', 'kj', '<Esc>')
 vim.keymap.set('v', 'kj', '<Esc>')
 vim.keymap.set('c', 'kj', '<Esc><Esc>')
 
+-- Remap H and L to move to beginning/End of line.
+vim.keymap.set({ 'n', 'v', 'o' }, 'H', '^')
+vim.keymap.set({ 'n', 'v', 'o' }, 'L', '$')
+
 --use ; to enter command mode from normal mode
 -- vim.keymap.set('n', ';', ':')
 
